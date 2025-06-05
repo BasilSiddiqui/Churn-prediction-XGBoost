@@ -6,7 +6,7 @@ This project aims to predict customer churn for a telecom company using the **XG
 
 ## 📁 Dataset
 
-The dataset used in this project is [`Telco-Customer-Churn.csv`](https://www.kaggle.com/datasets/blastchar/telco-customer-churn). It contains customer information such as services subscribed, tenure, monthly charges, contract types, and more.
+The dataset used in this project is [`Telco-Customer-Churn.csv`](https://www.kaggle.com/datasets/rhonarosecortez/telco-customer-churn). It contains customer information such as services subscribed, tenure, monthly charges, contract types, and more.
 
 **Target Variable:**
 - `Churn`: Indicates whether a customer left (Yes) or stayed (No).
