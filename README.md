@@ -69,8 +69,6 @@ model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=True)
 
 A **confusion matrix** was used to visualize the model's classification performance.
 
-📌 *Insert Confusion Matrix here:*
-
 ![Confusion Matrix](images/ConfusionMatrix.png)
 
 ---
@@ -91,8 +89,6 @@ The top 10 features based on average gain are printed in the console.
 ## 🌳 Tree Visualization
 
 We visualized the **first decision tree** in the ensemble using XGBoost’s `plot_tree()` function. The visualization uses custom styling for internal and leaf nodes for improved clarity.
-
-📌 *Insert Tree Visualization here:*
 
 ![XGBoost Tree](images/TreeVisualization.png)
 
