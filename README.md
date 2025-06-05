@@ -4,6 +4,28 @@ This project aims to predict customer churn for a telecom company using the **XG
 
 ---
 
+## 🔍 Business Impact
+
+* **Customer Retention**:
+  The model identifies customers at high risk of churn, enabling telecom companies to take proactive steps (e.g. special offers, loyalty perks) to retain them, reducing customer loss and increasing lifetime value.
+
+* **Targeted Marketing**:
+  By focusing only on high-risk users, the business can optimize marketing spend, avoid unnecessary outreach, and design personalized campaigns that are more likely to succeed.
+
+* **Strategic Insights**:
+  Feature importance reveals which factors (e.g. contract type, payment method, service usage) most influence churn. This helps companies improve products, pricing, and customer service.
+
+* **Improved Customer Service**:
+  Customer support teams can prioritize follow-ups and outreach to at-risk users, offering proactive solutions before dissatisfaction leads to churn.
+
+* **Data-Driven Planning**:
+  Churn forecasts assist in revenue prediction and help allocate resources efficiently across retention, onboarding, and support teams.
+
+* **Measurable ROI**:
+  Model evaluation metrics like accuracy and AUC help business leaders track performance and justify investments in data science.
+
+---
+
 ## 📁 Dataset
 
 The dataset used in this project is [`Telco-Customer-Churn.csv`](https://www.kaggle.com/datasets/rhonarosecortez/telco-customer-churn). It contains customer information such as services subscribed, tenure, monthly charges, contract types, and more.
