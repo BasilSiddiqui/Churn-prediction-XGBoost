@@ -152,12 +152,10 @@ conda install -c conda-forge xgboost scikit-learn matplotlib pandas numpy
 └── README.md
 ```
 
----
-
 ## 👤 Author
 
 **Basil Rehan**
+```
 Data Analyst | Actuarial & Data Science Student
 Heriot-Watt University Dubai
-
 ```
