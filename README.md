@@ -7,63 +7,61 @@ This project aims to predict customer churn for a telecom company using the **XG
 ## 🔍 Business Impact
 
 * **Customer Retention**:
-  The model identifies customers at high risk of churn, enabling telecom companies to take proactive steps (e.g. special offers, loyalty perks) to retain them, reducing customer loss and increasing lifetime value.
+  Identifies customers at high risk of churn, enabling proactive retention strategies.
 
 * **Targeted Marketing**:
-  By focusing only on high-risk users, the business can optimize marketing spend, avoid unnecessary outreach, and design personalized campaigns that are more likely to succeed.
+  Focus marketing efforts on high-risk users to reduce spend and increase effectiveness.
 
 * **Strategic Insights**:
-  Feature importance reveals which factors (e.g. contract type, payment method, service usage) most influence churn. This helps companies improve products, pricing, and customer service.
+  Uncover key drivers of churn, informing product, pricing, and service improvements.
 
 * **Improved Customer Service**:
-  Customer support teams can prioritize follow-ups and outreach to at-risk users, offering proactive solutions before dissatisfaction leads to churn.
+  Prioritize follow-up with at-risk users before they leave.
 
 * **Data-Driven Planning**:
-  Churn forecasts assist in revenue prediction and help allocate resources efficiently across retention, onboarding, and support teams.
+  Use churn forecasts for revenue prediction and resource planning.
 
 * **Measurable ROI**:
-  Model evaluation metrics like accuracy and AUC help business leaders track performance and justify investments in data science.
+  Evaluate model performance using metrics like accuracy and AUC to justify investment.
 
 ---
 
 ## 📁 Dataset
 
-The dataset used in this project is [`Telco-Customer-Churn.csv`](https://www.kaggle.com/datasets/rhonarosecortez/telco-customer-churn). It contains customer information such as services subscribed, tenure, monthly charges, contract types, and more.
+The dataset used is [`Telco-Customer-Churn.csv`](https://www.kaggle.com/datasets/rhonarosecortez/telco-customer-churn), containing information on:
 
-**Target Variable:**
-- `Churn`: Indicates whether a customer left (Yes) or stayed (No).
+* Services subscribed
+* Tenure and charges
+* Contract and payment types
+* Target: `Churn` (Yes/No)
 
 ---
 
 ## 🧼 Data Preprocessing
 
 1. **Removed Irrelevant Features**:
-   - Dropped the `customerID` column as it’s just an identifier.
+   Dropped `customerID`.
 
 2. **Handled Missing Data**:
-   - Replaced blank `" "` entries in `TotalCharges` with `0`, then converted the column to numeric.
+   Converted blanks in `TotalCharges` to zero and casted to numeric.
 
-3. **Reformatted Column Values**:
-   - Replaced whitespace in strings with underscores for consistent formatting.
+3. **Formatted String Columns**:
+   Replaced spaces with underscores for consistency.
 
-4. **Converted Categorical Variables**:
-   - Applied one-hot encoding to all categorical features, including:
-     - `gender`, `Partner`, `Dependents`, `PhoneService`, `MultipleLines`,
-     - `InternetService`, `OnlineSecurity`, `OnlineBackup`, `DeviceProtection`,
-     - `TechSupport`, `StreamingTV`, `StreamingMovies`, `Contract`,
-     - `PaperlessBilling`, `PaymentMethod`
+4. **Categorical Encoding**:
+   Applied one-hot encoding to all categorical features.
 
-5. **Mapped Target Labels**:
-   - Converted `Churn` values from `Yes/No` to `1/0`.
+5. **Label Mapping**:
+   Converted `Churn` from Yes/No → 1/0.
 
 ---
 
 ## 🧪 Model Training
 
-We used the following **XGBoost** classifier settings:
+We trained an **XGBoost Classifier** using:
 
 ```python
-model = XGBClassifier(
+XGBClassifier(
     objective='binary:logistic',
     gamma=0.25,
     learning_rate=0.1,
@@ -75,21 +73,42 @@ model = XGBClassifier(
     seed=42,
     use_label_encoder=False
 )
-````
-
-The dataset was split 80/20 into training and testing sets using `train_test_split` with stratification on the target variable.
-
-The model was trained with an evaluation set:
-
-```python
-model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=True)
 ```
+
+Train-test split: **80/20**, stratified on `Churn`.
 
 ---
 
 ## 📉 Evaluation
 
-A **confusion matrix** was used to visualize the model's classification performance.
+The model achieves:
+
+* **Accuracy**: `0.75`
+* **Precision (Class 1)**: `0.51`
+* **Recall (Class 1)**: `0.81`
+* **F1-Score (Class 1)**: `0.63`
+
+### 🔹 Classification Report:
+
+```
+              precision    recall  f1-score   support
+
+           0       0.91      0.72      0.81      1035
+           1       0.51      0.81      0.63       374
+
+    accuracy                           0.75      1409
+   macro avg       0.71      0.77      0.72      1409
+weighted avg       0.81      0.75      0.76      1409
+```
+
+### 🔹 Confusion Matrix:
+
+|                | Predicted No | Predicted Yes |
+| -------------- | ------------ | ------------- |
+| **Actual No**  | 749          | 286           |
+| **Actual Yes** | 72           | 302           |
+
+Visualized:
 
 ![Confusion Matrix](images/ConfusionMatrix.png)
 
@@ -97,20 +116,22 @@ A **confusion matrix** was used to visualize the model's classification performa
 
 ## 🔍 Feature Importance
 
-We extracted feature importances from the trained XGBoost model using the **`gain`** metric:
+Top 10 features (based on `gain` from XGBoost booster):
 
 ```python
 bst = model.get_booster()
 gain_scores = bst.get_score(importance_type='gain')
 ```
 
-The top 10 features based on average gain are printed in the console.
+Visualized:
+
+![Feature Importance](images/FeatureImportance.png)
 
 ---
 
 ## 🌳 Tree Visualization
 
-We visualized the **first decision tree** in the ensemble using XGBoost’s `plot_tree()` function. The visualization uses custom styling for internal and leaf nodes for improved clarity.
+First decision tree from the ensemble:
 
 ![XGBoost Tree](images/TreeVisualization.png)
 
@@ -118,9 +139,11 @@ We visualized the **first decision tree** in the ensemble using XGBoost’s `plo
 
 ## 💡 Future Improvements
 
-* Implement early stopping for faster training (requires version-specific compatibility).
-* Explore hyperparameter tuning with `GridSearchCV`.
-* Add ROC-AUC, PR-AUC, and feature selection for enhanced evaluation.
+* Add early stopping to improve training efficiency.
+* Perform hyperparameter tuning (`GridSearchCV`, `Optuna`).
+* Explore advanced metrics like ROC-AUC and PR-AUC.
+* Integrate SHAP for model interpretability.
+* Deploy as an API using FastAPI or Flask.
 
 ---
 
@@ -133,7 +156,7 @@ We visualized the **first decision tree** in the ensemble using XGBoost’s `plo
 * matplotlib
 * xgboost (v3.0.2)
 
-To install dependencies via conda:
+Install using conda:
 
 ```bash
 conda install -c conda-forge xgboost scikit-learn matplotlib pandas numpy
@@ -145,17 +168,20 @@ conda install -c conda-forge xgboost scikit-learn matplotlib pandas numpy
 
 ```
 ├── Telco-Customer-Churn.csv
-├── churn_model.py                # Main model training and evaluation script
+├── churn_model.py                # Main training script
 ├── images/
 │   ├── confusion_matrix.png
-│   └── tree_visualization.png
+│   ├── tree_visualization.png
+│   └── feature_importance.png
 └── README.md
 ```
+
+---
 
 ## 👤 Author
 
 **Basil Rehan**
-```
-Data Analyst | Actuarial & Data Science Student
-Heriot-Watt University Dubai
-```
+*Data Analyst | Actuarial & Data Science Student*
+*Heriot-Watt University Dubai*
+
+---
