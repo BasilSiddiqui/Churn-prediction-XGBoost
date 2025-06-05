@@ -71,7 +71,7 @@ A **confusion matrix** was used to visualize the model's classification performa
 
 📌 *Insert Confusion Matrix here:*
 
-![Confusion Matrix](images/confusion_matrix.png)
+![Confusion Matrix](images/ConfusionMatrix.png)
 
 ---
 
@@ -94,7 +94,7 @@ We visualized the **first decision tree** in the ensemble using XGBoost’s `plo
 
 📌 *Insert Tree Visualization here:*
 
-![XGBoost Tree](images/tree_visualization.png)
+![XGBoost Tree](images/TreeVisualization.png)
 
 ---
 
