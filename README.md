@@ -139,8 +139,3 @@ Data Analyst | Actuarial & Data Science Student
 Heriot-Watt University Dubai
 
 ```
-
----
-
-Let me know if you want me to generate the images or the `.py` file as well!
-```
