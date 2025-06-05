@@ -164,20 +164,6 @@ conda install -c conda-forge xgboost scikit-learn matplotlib pandas numpy
 
 ---
 
-## 📂 File Structure
-
-```
-├── Telco-Customer-Churn.csv
-├── churn_model.py                # Main training script
-├── images/
-│   ├── confusion_matrix.png
-│   ├── tree_visualization.png
-│   └── feature_importance.png
-└── README.md
-```
-
----
-
 ## 👤 Author
 
 **Basil Rehan**
